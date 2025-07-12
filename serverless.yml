@@ -11,10 +11,10 @@ provider:
 
 functions:
   app:
-    handler: handler.handler
+    handler: app/handler.handler
     events:
       - httpApi: "GET /"
   sayHello:
-    handler: handler.handler
+    handler: app/handler.handler
     events:
       - httpApi: "GET /hello"
