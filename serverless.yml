@@ -1,0 +1,20 @@
+org: alihm
+app: test-project-app
+service: test-project
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: eu-north-1
+  memorySize: 128
+  timeout: 3
+
+functions:
+  app:
+    handler: handler.handler
+    events:
+      - httpApi: "GET /"
+  sayHello:
+    handler: handler.handler
+    events:
+      - httpApi: "GET /hello"
