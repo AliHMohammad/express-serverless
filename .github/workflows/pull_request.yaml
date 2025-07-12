@@ -4,24 +4,11 @@ on:
   pull_request:
 
 jobs:
-  deploy:
-    name: Deploy to AWS
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
+  deploy-to-aws:
+    uses: ./.github/workflows/aws.yaml
+    with:
+      stage: dev
+    secrets:
+      serverless_access_key: ${{ secrets.SERVERLESS_ACCESS_KEY }}
 
-      - name: Npm Install
-        run: npm install
-      
-      - name: Deploy
-        uses: serverless/github-action@v4
-        with:
-          args: deploy
-        env:
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-    
+
